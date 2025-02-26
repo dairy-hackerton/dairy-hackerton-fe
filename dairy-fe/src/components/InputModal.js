@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/InputModal.css"; // ✅ 모달 스타일 추가
 import { createDiaryEntry } from "../utils/api";
 
-const InputModal = ({ date, onClose }) => {
+const InputModal = ({date, onClose }) => {
   // ✅ 상태값 추가
   const [condition, setMood] = useState(""); // 분위기 선택
   const [wakeTime, setWakeUpTime] = useState(""); // 기상 시간
@@ -54,15 +54,13 @@ const InputModal = ({ date, onClose }) => {
       extSentence
     };
     try {
-      const response = await createDiaryEntry(diaryData); // ✅ API 호출
+      const response = await createDiaryEntry(diaryData, date); // ✅ API 호출
       console.log("📖 저장된 일기 데이터:", response);
       alert("일기가 성공적으로 저장되었습니다!");
       onClose();
     } catch (error) {
       alert("일기 저장 중 오류가 발생했습니다.");
     }
-  
-    alert("일기 생성을 요청하였습니다!");
   };
   
 
