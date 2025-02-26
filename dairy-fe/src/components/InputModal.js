@@ -44,7 +44,7 @@ const InputModal = ({ date, onClose }) => {
   };
 
   // 저장버튼 눌른 경우
-  const handleSave = () => {
+  const handleSave = async () => {
     const diaryData = {
       condition,
       wakeTime,
@@ -77,7 +77,7 @@ const InputModal = ({ date, onClose }) => {
             {moods.map((m, index) => (
               <button
                 key={index}
-                className={`mood-circle ${mood === m.label ? "selected" : ""}`}
+                className={`mood-circle ${condition === m.value ? "selected" : ""}`}
                 style={{ backgroundColor: m.color }}
                 onClick={() => setMood(m.value)}
               >
@@ -92,7 +92,7 @@ const InputModal = ({ date, onClose }) => {
           <label>오늘 몇시에 일어나셨나요?</label>
           <input 
             type="time" 
-            value={wakeUpTime} 
+            value={wakeTime} 
             onChange={(e) => setWakeUpTime(e.target.value)} 
           />
         </div>
@@ -105,15 +105,15 @@ const InputModal = ({ date, onClose }) => {
             placeholder="입력 후 엔터를 눌러 추가하세요" 
             value={mealInput} 
             onChange={(e) => setMealInput(e.target.value)}
-            onKeyDown={(e) => handleTagKeyDown(e, mealInput, setMealInput, meals, setMeals)}
+            onKeyDown={(e) => handleTagKeyDown(e, mealInput, setMealInput, food, setMeals)}
             onCompositionStart={handleCompositionStart}
             onCompositionEnd={handleCompositionEnd}
           />
           <div className="tags-container">
-            {meals.map((meal, index) => (
+            {food.map((meal, index) => (
               <span key={index} className="tag">
                 {meal}
-                <button onClick={() => removeTag(meal, meals, setMeals)}>✖</button>
+                <button onClick={() => removeTag(meal, food, setMeals)}>✖</button>
               </span>
             ))}
           </div>
@@ -127,15 +127,15 @@ const InputModal = ({ date, onClose }) => {
             placeholder="입력 후 엔터를 눌러 추가하세요" 
             value={activityInput} 
             onChange={(e) => setActivityInput(e.target.value)}
-            onKeyDown={(e) => handleTagKeyDown(e, activityInput, setActivityInput, activities, setActivities)}
+            onKeyDown={(e) => handleTagKeyDown(e, activityInput, setActivityInput, userDo, setActivities)}
             onCompositionStart={handleCompositionStart}
             onCompositionEnd={handleCompositionEnd}
           />
           <div className="tags-container">
-            {activities.map((activity, index) => (
+            {userDo.map((activity, index) => (
               <span key={index} className="tag">
                 {activity}
-                <button onClick={() => removeTag(activity, activities, setActivities)}>✖</button>
+                <button onClick={() => removeTag(activity, userDo, setActivities)}>✖</button>
               </span>
             ))}
           </div>
@@ -149,15 +149,15 @@ const InputModal = ({ date, onClose }) => {
             placeholder="입력 후 엔터를 눌러 추가하세요" 
             value={peopleInput} 
             onChange={(e) => setPeopleInput(e.target.value)}
-            onKeyDown={(e) => handleTagKeyDown(e, peopleInput, setPeopleInput, peopleMet, setPeopleMet)}
+            onKeyDown={(e) => handleTagKeyDown(e, peopleInput, setPeopleInput, meetPeople, setPeopleMet)}
             onCompositionStart={handleCompositionStart}
             onCompositionEnd={handleCompositionEnd}
           />
           <div className="tags-container">
-            {peopleMet.map((person, index) => (
+            {meetPeople.map((person, index) => (
               <span key={index} className="tag">
                 {person}
-                <button onClick={() => removeTag(person, peopleMet, setPeopleMet)}>✖</button>
+                <button onClick={() => removeTag(person, meetPeople, setPeopleMet)}>✖</button>
               </span>
             ))}
           </div>
@@ -168,7 +168,7 @@ const InputModal = ({ date, onClose }) => {
           <label>더 쓸 내용이 있다면 작성해주세요</label>
           <textarea 
             className="large-textarea" // ✅ 새로운 클래스 적용
-            value={extraNotes} 
+            value={extSentence} 
             onChange={(e) => setExtraNotes(e.target.value)}
             placeholder="자유롭게 입력하세요..."
           />
