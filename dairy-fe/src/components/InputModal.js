@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../styles/InputModal.css"; // ✅ 모달 스타일 추가
 import { createDiaryEntry } from "../utils/api";
 
-const InputModal = ({date, onClose }) => {
+const InputModal = ({date, memoData, onClose }) => {
   // ✅ 상태값 추가
-  const [condition, setMood] = useState(""); // 분위기 선택
+  const [mood, setMood] = useState(""); // 분위기 선택
   const [wakeTime, setWakeUpTime] = useState(""); // 기상 시간
   const [mealInput, setMealInput] = useState(""); // 입력창 값
   const [food, setMeals] = useState([]); // 입력된 식사 리스트
@@ -46,7 +46,8 @@ const InputModal = ({date, onClose }) => {
   // 저장버튼 눌른 경우
   const handleSave = async () => {
     const diaryData = {
-      condition,
+      tone: memoData.tone,
+      mood,
       wakeTime,
       food,
       userDo,
@@ -75,7 +76,7 @@ const InputModal = ({date, onClose }) => {
             {moods.map((m, index) => (
               <button
                 key={index}
-                className={`mood-circle ${condition === m.value ? "selected" : ""}`}
+                className={`mood-circle ${mood === m.value ? "selected" : ""}`}
                 style={{ backgroundColor: m.color }}
                 onClick={() => setMood(m.value)}
               >

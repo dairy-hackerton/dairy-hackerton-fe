@@ -8,7 +8,17 @@ const Calendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // ✅ 모달 상태
   const [selectedDate, setSelectedDate] = useState(null); // ✅ 클릭한 날짜 저장 
 
-  
+  // ✅ MemoPad의 데이터 상태 (Calendar에서 관리)
+  const [memoData, setMemoData] = useState({
+    goal: "", // 오늘의 목표
+    tone: "반말" // 선택된 어투
+  });
+
+  // ✅ MemoPad에서 데이터를 전달받는 함수
+  const handleMemoDataChange = (newData) => {
+    setMemoData((prev) => ({ ...prev, ...newData }));
+  };
+
   // 현재 연도와 월 가져오기
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -43,7 +53,7 @@ const Calendar = () => {
   return (
     <div className="calendar-container">
       {/* 왼쪽 메모장 */}
-      <MemoPad />
+      <MemoPad onDataChange={handleMemoDataChange}/>
       {/* 달력 섹션 */}
       <div className="calendar-section">
         <div className="calendar-header">
@@ -77,6 +87,7 @@ const Calendar = () => {
       {isModalOpen && (
         <InputModal 
           date={selectedDate} 
+          memoData={memoData}
           onClose={() => setIsModalOpen(false)} 
         />
       )}
