@@ -11,10 +11,11 @@
 .todo {
   background: white;
   min-height: 200px;
-  padding: 12px;
+  padding: 14px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  text-align: left;
+  font-size: 14px;
 }
 
 /* 제목 스타일 */

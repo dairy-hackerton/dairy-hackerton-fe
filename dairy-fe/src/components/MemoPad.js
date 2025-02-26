@@ -14,7 +14,8 @@ const MemoPad = () => {
       {/* 1️⃣ 할 일 / 목표 섹션 */}
       <div className="todo">
         <h4>🎯 한달 목표</h4>
-        <p>{goal}</p>
+        <p>- {goal}</p>
+        <p>- 주 100시간 코딩!</p>
       </div>
 
       {/* 2️⃣ 어투 설정 섹션 */}
