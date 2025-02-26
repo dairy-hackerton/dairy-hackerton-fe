@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '16'  # 원하는 버전
 
-      # 3) 의존성 설치 & 빌드
+      # 3) 의존성 설치 & 빌드 
       - name: Install dependencies
         run: npm install
 
