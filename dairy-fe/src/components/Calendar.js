@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "../styles/Calendar.css"; // 스타일 파일
 import MemoPad from "./MemoPad";
+import InputModal from "./InputModal"
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [isModalOpen, setIsModalOpen] = useState(false); // ✅ 모달 상태
+  const [selectedDate, setSelectedDate] = useState(null); // ✅ 클릭한 날짜 저장 
+
   
   // 현재 연도와 월 가져오기
   const year = currentDate.getFullYear();
@@ -28,6 +32,13 @@ const Calendar = () => {
   for (let i = 0; i < firstDay; i++) days.push(null); // 앞쪽 빈칸
   for (let i = 1; i <= lastDate; i++) days.push(i);
 
+  // 오늘 날짜 클릭 시 모달 열기
+  const handleTodayClick = (day) => {
+    if (day === todayDate && year === todayYear && month === todayMonth) {
+      setSelectedDate(`${year}-${month + 1}-${day}`);
+      setIsModalOpen(true);
+    }
+  };
 
   return (
     <div className="calendar-container">
@@ -53,14 +64,22 @@ const Calendar = () => {
               <div
                 key={index}
                 className={`calendar-cell ${day ? "active" : ""} ${isToday ? "today" : ""}`}
+                onClick={() => handleTodayClick(day)} // 오늘 날짜 클릭시 모달 열기
               >
                 {isToday && <div className="today-circle"></div>}
                 {day && <span className="date-number">{day}</span>}
+                {isToday && <p className="diary-text">+ 오늘 일기 작성하기</p>}
               </div>
             );
           })}
         </div>
       </div>
+      {isModalOpen && (
+        <InputModal 
+          date={selectedDate} 
+          onClose={() => setIsModalOpen(false)} 
+        />
+      )}
     </div>
   );
 };

@@ -1,0 +1,154 @@
+
+.diary-text {
+  font-size: 13px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 모달 배경 (어두운 오버레이) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* 모달 컨텐츠 */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 450px; /* 적절한 크기 설정 */
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.modal-content h3 {
+  font-weight: 700;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+/* 입력 그룹 스타일 */
+.input-group {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.input-group label {
+  font-weight: 500;
+  display: block;
+  margin-top: 20px;
+}
+
+.input-group input {
+  width: 93%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  margin-top: 7px;
+}
+
+/* 태그 컨테이너 */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+/* 태그 스타일 */
+.tag {
+  background: #ffeb99;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* 태그 삭제 버튼 */
+.tag button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 14px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+/* 버튼 스타일 */
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.modal-buttons button:first-child {
+  background-color: #ddd;
+}
+
+.modal-buttons button:last-child {
+  background-color: #ff6b6b;
+  color: white;
+}
+/* 긴 텍스트 입력 */
+.large-textarea {
+  width: 93%;
+  height: 80px; /* ✅ 기존보다 높이 증가 */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  resize: vertical; /* ✅ 사용자가 크기 조절 가능 */
+}
+
+/* 분위기 선택 버튼 컨테이너 */
+.mood-selection {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 동그라미 버튼 */
+.mood-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* 선택된 분위기 강조 */
+.mood-circle.selected {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
