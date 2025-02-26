@@ -1,0 +1,89 @@
+/* 전체 달력 컨테이너 */
+.calendar-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  background-color: #f8f5eb;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 헤더 (이전/다음 월 버튼) */
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 20px;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* 요일 및 날짜 그리드 */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day {
+  font-weight: bold;
+  padding: 15px;
+  background-color: #ddd8c4;
+  
+}
+
+.calendar-cell {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+/* 모든 날짜의 숫자를 오른쪽 위로 이동 */
+.calendar-cell span {
+  position: absolute;
+  top: 5px;  /* 위로 이동 */
+  right: 5px; /* 오른쪽으로 이동 */
+  font-weight: bold;
+  font-size: 14px;
+  color: black; /* 기본 글자 색상 */
+  z-index: 2; /* 다른 요소 위에 배치 */
+}
+.calendar-cell.active:hover {
+  background-color: #f0e6d2;
+}
+
+/* 날짜별 메모 스타일 */
+.note {
+  font-size: 10px;
+  color: white;
+  background-color: #ff6b6b;
+  border-radius: 5px;
+  padding: 2px 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+/* 오늘 날짜의 동그라미 (새로운 컴포넌트) */
+.today-circle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 50%;
+  top: 18%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.5; /* 살짝 투명하게 */
+}
