@@ -1,0 +1,54 @@
+.memo-section {
+  width: 250px; /* 고정 크기 */
+  min-height: 500px; /* 일정한 높이 유지 */
+  background-color: #fdf2c5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* 크기가 줄어들지 않도록 설정 */
+}
+/* 각 기능 섹션 스타일 */
+.todo {
+  background: white;
+  min-height: 200px;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* 제목 스타일 */
+.todo h4 {
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+/* 드롭다운 스타일 */
+.tone select {
+  width: 80%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 13px;
+}
+.tone p {
+  font-size: 15px;
+  color:gray;
+}
+
+/* 버튼 스타일 */
+.my-page button {
+  margin-top: 10px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease-in-out;
+}
+
+.my-page button:hover {
+  background-color: #ff3b3b;
+}

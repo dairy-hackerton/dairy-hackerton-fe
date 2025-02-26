@@ -1,13 +1,30 @@
 /* 전체 달력 컨테이너 */
 .calendar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   width: 100%;
-  max-width: 800px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
   margin: 40px auto;
   text-align: center;
   background-color: #f8f5eb;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+/* 메모장 스타일 */
+.memo-section {
+  margin-top: 75px;
+  
+}
+
+/* 달력 섹션 스타일 */
+.calendar-section {
+  flex-grow: 1;
+  max-width: 800px;
 }
 
 /* 헤더 (이전/다음 월 버튼) */
