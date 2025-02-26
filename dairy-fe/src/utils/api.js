@@ -1,33 +1,26 @@
-const API_URL = process.env.REACT_APP_API_URL || 'https://localhost:8080';
+import axios from "axios";
 
-const request = async (endpoint, method = 'GET', body = null, headers = {}) => {
+// ✅ 백엔드 API 기본 URL 설정
+const API_BASE_URL = "https://localhost:8080"; 
+
+// ✅ 일기 데이터 전송 함수
+export const createDiaryEntry = async (diaryData) => {
   try {
-    const config = {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-        ...headers,
-      },
-    };
-
-    if (body) {
-      config.body = JSON.stringify(body);
-    }
-
-    const response = await fetch(`${API_URL}${endpoint}`, config);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    return await response.json();
+    const response = await axios.post(`${API_BASE_URL}/diary`, diaryData);
+    return response.data;
   } catch (error) {
-    console.error('Fetch error:', error);
+    console.error("[ERROR]일 기 생성에 실패하였습니다", error);
     throw error;
   }
 };
 
-export const getData = (endpoint) => request(endpoint);
-export const postData = (endpoint, data) => request(endpoint, 'POST', data);
-export const putData = (endpoint, data) => request(endpoint, 'PUT', data);
-export const deleteData = (endpoint) => request(endpoint, 'DELETE');
+// ✅ (추가 가능) 저장된 일기 불러오기
+// export const getDiaryEntries = async () => {
+//   try {
+//     const response = await axios.get(`${API_BASE_URL}/diary`);
+//     return response.data;
+//   } catch (error) {
+//     console.error("일기 목록 불러오기 실패:", error);
+//     throw error;
+//   }
+// };

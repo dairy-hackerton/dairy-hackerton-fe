@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import "../styles/InputModal.css"; // ✅ 모달 스타일 추가
+import { createDiaryEntry } from "../utils/api";
 
 const InputModal = ({ date, onClose }) => {
   // ✅ 상태값 추가
-  const [mood, setMood] = useState(""); // 분위기 선택
-  const [wakeUpTime, setWakeUpTime] = useState(""); // 기상 시간
+  const [condition, setMood] = useState(""); // 분위기 선택
+  const [wakeTime, setWakeUpTime] = useState(""); // 기상 시간
   const [mealInput, setMealInput] = useState(""); // 입력창 값
-  const [meals, setMeals] = useState([]); // 입력된 식사 리스트
+  const [food, setMeals] = useState([]); // 입력된 식사 리스트
   const [activityInput, setActivityInput] = useState(""); // 오늘 한 일 입력창
-  const [activities, setActivities] = useState([]); // 오늘 한 일 리스트
+  const [userDo, setActivities] = useState([]); // 오늘 한 일 리스트
   const [peopleInput, setPeopleInput] = useState(""); // 만난 사람 입력창
-  const [peopleMet, setPeopleMet] = useState([]); // 만난 사람 리스트
-  const [extraNotes, setExtraNotes] = useState(""); // ✅ 추가 입력 (긴 글)
+  const [meetPeople, setPeopleMet] = useState([]); // 만난 사람 리스트
+  const [extSentence, setExtraNotes] = useState(""); // ✅ 추가 입력 (긴 글)
   const [isComposing, setIsComposing] = useState(false); // ✅ 한글 입력 상태
 
   const moods = [
-    { label: "😡 화남", color: "#FF6565" },
-    { label: "😰 불안", color: "#FE9C5B" },
-    { label: "😆 기쁨", color: "#EFEC44" },
-    { label: "😌 평온", color: "#9EDF84" },
-    { label: "🥱 슬픔", color: "#5AA5EB" },
-    { label: "🥰 행복", color: "#E15AB0" },
-    { label: "😴 피곤", color: "#9370DB" },
-  ];
+    { label: "😡 화남", value: "화남", color: "#FF6565" },
+    { label: "😰 불안", value: "불안", color: "#FE9C5B" },
+    { label: "😆 기쁨", value: "기쁨", color: "#EFEC44" },
+    { label: "😌 평온", value: "평온", color: "#9EDF84" },
+    { label: "🥱 슬픔", value: "슬픔", color: "#5AA5EB" },
+    { label: "🥰 행복", value: "행복", color: "#E15AB0" },
+    { label: "😴 피곤", value: "피곤", color: "#9370DB" },
+  ];  
 
   // ✅ IME 입력 시작 (한글 조합 중)
   const handleCompositionStart = () => setIsComposing(true);
@@ -42,6 +43,29 @@ const InputModal = ({ date, onClose }) => {
     setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
+  // 저장버튼 눌른 경우
+  const handleSave = () => {
+    const diaryData = {
+      condition,
+      wakeTime,
+      food,
+      userDo,
+      meetPeople,
+      extSentence
+    };
+    try {
+      const response = await createDiaryEntry(diaryData); // ✅ API 호출
+      console.log("📖 저장된 일기 데이터:", response);
+      alert("일기가 성공적으로 저장되었습니다!");
+      onClose();
+    } catch (error) {
+      alert("일기 저장 중 오류가 발생했습니다.");
+    }
+  
+    alert("일기 생성을 요청하였습니다!");
+  };
+  
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -55,7 +79,7 @@ const InputModal = ({ date, onClose }) => {
                 key={index}
                 className={`mood-circle ${mood === m.label ? "selected" : ""}`}
                 style={{ backgroundColor: m.color }}
-                onClick={() => setMood(m.label)}
+                onClick={() => setMood(m.value)}
               >
                 {m.label}
               </button>
@@ -153,7 +177,7 @@ const InputModal = ({ date, onClose }) => {
         {/* 버튼 영역 */}
         <div className="modal-buttons">
           <button onClick={onClose}>닫기</button>
-          <button onClick={() => alert("일기 생성을 요청하였습니다!")}>일기 생성하기</button>
+          <button onClick={handleSave}>일기 생성하기</button>
         </div>
       </div>
     </div>
