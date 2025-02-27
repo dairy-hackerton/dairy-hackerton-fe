@@ -3,9 +3,7 @@ import "../styles/Calendar.css"; // 스타일 파일
 import MemoPad from "./MemoPad";
 import InputModal from "./InputModal";
 import ReadModal from "./ReadModal";
-import { getDiaryEntries } from "../utils/api";
-import { getDiaryDetail } from "../utils/api";
-
+import { getDiaryEntries, getDiaryDetail, deleteDiaryEntries } from "../utils/api";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -122,8 +120,14 @@ const Calendar = () => {
     }
   };
   
-  const handleDeleteDiary = (diaryId) => {
-    // TODO: 삭제 기능 구현
+  const handleDeleteDiary = async (day) => {
+    const result = await deleteDiaryEntries(todayYear, todayMonth, day);
+    if (result) {
+      setDiaryEntries(diaryEntries.filter((entry) => entry.day !== day));
+      setIsReadModalOpen(false);
+    } else {
+      alert("일기 삭제에 실패하였습니다.");
+    }
   };
 
   return (

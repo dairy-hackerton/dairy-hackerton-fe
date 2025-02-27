@@ -16,7 +16,7 @@ export const createDiaryEntry = async (diaryData, date) => {
 // 특정 년월의 일기 메타데이터 리스트 가져오기
 export const getDiaryEntries = async (year, month) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/diary/${year}-${month}`); // GET 요청
+    const response = await axios.get(`${API_BASE_URL}/diary/${year}/${month}`); // GET 요청
     console.log("[DEBUG] 불러온 일기 데이터:", response.data); 
     return response.data.dateDiarySentence;
   } catch (error) {
@@ -27,11 +27,21 @@ export const getDiaryEntries = async (year, month) => {
 // 특정 날짜의 상세 일기 가져오기
 export const getDiaryDetail = async (year, month, date) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/diary/${year}-${month}-${date}`);
+    const response = await axios.get(`${API_BASE_URL}/diary/${year}/${month}/${date}`);
     console.log("[DEBUG] 상세 일기 데이터:", response.data);
     return response.data;
   } catch (error) {
     console.error("[ERROR] 상세 일기를 불러오지 못했습니다:", error);
+    return null;
+  }
+};
+// 특정 날짜의 일기 삭제
+export const deleteDiaryEntries = async (year, month, date) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/diary/${year}/${month}/${date}`);
+    return response.data;
+  } catch (error) {
+    console.error("[ERROR]일기 삭제에 실패하였습니다", error);
     return null;
   }
 };
