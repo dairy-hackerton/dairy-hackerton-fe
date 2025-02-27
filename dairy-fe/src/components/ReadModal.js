@@ -47,9 +47,18 @@ const ReadModal = ({ diary, onClose, onDelete }) => {
         <p className="diary-content"><strong>이날의 분위기:</strong> {moods[diary.mood] || "❓"}</p>
         <div ref={diaryBoxRef} className={`diary-box ${isScrollable ? "scrollable" : ""}`}>
           <div className="diary-content">
-            {diary.detail[languageOptions[selectedLanguage]] || "내용이 없습니다."}
+            {diary.detail.diaryKo}
           </div>
+          {/* ✅ 번역본 추가 (기본적으로 한국어만 출력, 다른 언어 선택 시 추가 출력) */}
+          {selectedLanguage !== "한국어" && diary.detail[languageOptions[selectedLanguage]] && (
+            <>
+              <hr className="translation-divider"/>
+              <p className="diary-content"><strong>{selectedLanguage} 번역본 💬</strong></p>
+              <p className="diary-content">{diary.detail[languageOptions[selectedLanguage]]}</p>
+            </>
+          )}
         </div>
+
 
         <div className="action-buttons">
           {/* ✅ 삭제 버튼 클릭 시 확인 모달 띄우기 */}
