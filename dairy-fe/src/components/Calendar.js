@@ -16,12 +16,12 @@ const Calendar = () => {
   const [diaryEntries, setDiaryEntries] = useState([
     //TODO: 더미 데이터 삭제
     // {
-    //   "date" : 21,
+    //   "day" : 21,
     //   "summary" : "딥다이브 하고 피곤한 날 🌊 ",
     //   "mood" : "피곤"
     // },
     // {
-    //   "date" : 25,
+    //   "day" : 25,
     //   "summary" : "💡 성공적인 카부캠 아이디어톤",
     //   "mood" : "기쁨"
     // }
@@ -103,12 +103,12 @@ const Calendar = () => {
       //   "diaryJa":"今日は気持ちよく一日を始められたよ！⛅️ 朝は9時にすっきりと起きて、ご飯とキムチ、それにわかめスープまで美味しく食べたよ。🍚🥢 今日一日頑張ろうって決めたんだ！運動も激しくして 💪 勉強もしっかりとやったよ。🤓 グレイとビッキーにも会って一杯飲んで楽しかったし。🍻 友達のおかげで一日がもっと楽しかったよ！今日は本当にいい一日を過ごせたみたい。😊 明日も良い一日にしよう！🌟",
       //   "diaryCh":"今天一天以愉快的心情开始，充满活力地起床了！⛅️ 早上九点准时起床，吃了饭、泡菜和美味的海带汤。🍚🥢 我决定要努力过好今天！不仅认真锻炼了💪，还认真学习了。🤓 跟灰和比基见面喝了一杯酒，也很开心。🍻 多亏了朋友们，今天一天更加愉快！觉得今天真是过得很好。😊 明天也要努力过得愉快！🌟",
       //   "diaryLa":"Hodie diem bonum sentiens excitavi! ⛅️ Mane hora nona exacta surrexi et comedi oryza cum kimchi et ius algarum ad libitum. 🍚🥢 Hodie diem fortiter agere decrevi! Exercitium strenue feci 💪 et studium diligenter perfeci. 🤓 Cum Grey et Vicky conveni et potum cepi, quod erat iucundum. 🍻 Amicorum gratia dies iucundior fuit! Mihi videtur hodie bene actum esse. 😊 Cras quoque bene agentem diem faciam! 🌟",
-      //   "diary_summary":"좋은 하루 보냈어!"
+      //   "summary":"좋은 하루 보냈어!"
       // }
       
       if (detailData) {
         setSelectedDiary({
-          date: diaryEntry.date,
+          date: diaryEntry.day,
           mood: diaryEntry.mood,
           summary: diaryEntry.summary,
           detail: detailData
