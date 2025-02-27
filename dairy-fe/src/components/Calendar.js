@@ -185,7 +185,10 @@ const Calendar = () => {
         <InputModal 
           date={selectedDate} 
           memoData={memoData}
-          onClose={() => setIsWriteModalOpen(false)}
+          onClose={() => {
+            setIsWriteModalOpen(false); 
+            window.location.reload();
+          }}
         />
       )}
 
