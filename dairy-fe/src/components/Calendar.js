@@ -14,17 +14,17 @@ const Calendar = () => {
   const [isReadModalOpen, setIsReadModalOpen] = useState(false); // 모달 상태
   const [selectedDiary, setSelectedDiary] = useState(null); // 선택된 일기 데이터
   const [diaryEntries, setDiaryEntries] = useState([
-    // TODO: 더미 데이터 삭제
-    // {
-    //   "date" : 21,
-    //   "summary" : "딥다이브 하고 피곤한 날 🌊 ",
-    //   "mood" : "피곤"
-    // },
-    // {
-    //   "date" : 25,
-    //   "summary" : "💡 성공적인 카부캠 아이디어톤",
-    //   "mood" : "기쁨"
-    // }
+    //TODO: 더미 데이터 삭제
+    {
+      "date" : 21,
+      "summary" : "딥다이브 하고 피곤한 날 🌊 ",
+      "mood" : "피곤"
+    },
+    {
+      "date" : 25,
+      "summary" : "💡 성공적인 카부캠 아이디어톤",
+      "mood" : "기쁨"
+    }
   ]); // 월별 일기 메타데이터 리스트 저장
 
 
@@ -41,7 +41,7 @@ const Calendar = () => {
   // MemoPad의 데이터 상태 (Calendar에서 관리)
   const [memoData, setMemoData] = useState({
     goal: "", // 오늘의 목표
-    tone: "반말" // 선택된 어투
+    tone: "평범" // 선택된 어투
   });
 
   // MemoPad에서 데이터를 전달받는 함수
@@ -55,11 +55,11 @@ const Calendar = () => {
 
   // 컴포넌트가 처음 렌더링될 때 백엔드에서 특정 연도와 월의 데이터 가져오기
   useEffect(() => {
-    const fetchDiaryEntries = async () => {
-      const data = await getDiaryEntries(year, month); // ✅ year, month 전달
-      setDiaryEntries(data);
-    };
-    fetchDiaryEntries();
+    // const fetchDiaryEntries = async () => {
+    //   const data = await getDiaryEntries(year, month); // ✅ year, month 전달
+    //   setDiaryEntries(data);
+    // };
+    // fetchDiaryEntries();
   }, [year, month]);
 
   // 오늘 날짜 가져오기
@@ -95,18 +95,16 @@ const Calendar = () => {
     if (!diaryEntry) return;
   
     try {
-      const detailData = await getDiaryDetail(year, month + 1, day);
+      //const detailData = await getDiaryDetail(year, month + 1, day);
       
       // TODO: 더미 데이터 삭제
-      // const detailData = {   
-      //   "message" : "detail_diary_success",
-      //   "diaryKo" : "오늘의 하루 로그 ㄱㄱ 📝✨\n\n아침에 9시에 일어났음! ⏰ 눈뜨자마자 바로 '오늘 하루 힘내자!'라고 스스로 다짐함. 벌떡 일어나서 아침 흡입 완료 🍚🥢 밥에 김치, 그리고 미역국까지! 김치는 한국인의 소울푸드 다들 알죠? 괜히 힘이 나는 기분~(불끈)\n\n운동도 하고 공부도 했슴다! (운동머신 + 공부천재 = 나) 💪📚 오늘도 뇌에 한 스푼의 근육을 더했음. 끝내주게 열일했음욤. 🕺\n\n그리고 내가 사랑하는 친구 그레이랑 비키 만나서 수다 삼매경 돌입! 🎤 음료 대신 술 한 잔씩 하면서 서로의 TMI 공유... 이거시 행복? ㅋㅋㅋㅋㅋ 🍻 (아니 술이 본체 아님, 절대 아직 순수함 유지중임!)\n\n오늘 하루 화이팅했음! 다들 굿나잇 ✌😴🌙",
-      //   "diaryEn" : "영어로 번영된 내용",
-      //   "diaryJa" : "일본어로 번역된 내용",
-      //   "diaryCh" : "중국어로 번역된 내용",
-      //   "diaryLa" : "라틴어로 번역된 내용",
-      //   "summary" : "요약~~"
-      // }
+      const detailData = {"diaryKo":"오늘 하루 시작하난 좋은 기분으로 햄껏 일어나쌌주! ⛅️ 아침엔 9시에 딱 벌떡 일어나서 밥이랑 김치에 미역국까지 맛나게 먹었어. 🍚🥢 오늘 하루 힘내자고 맘먹었주! 운동도 빡세게 하고 💪 공부도 착실하게 했주. 🤓 그레이랑 비키도 만나서 술 한잔하맨 좋았으쿠라. 🍻 친구들 덕분에 하루가 더 즐거웠주! 오늘 하루 참 잘 보낸 거 같주. 😊 내일도 좋은 하루 되게 만들어보게마! 🌟",
+        "diaryEn":"I started my day with a great mood and got up with zest! ⛅️ I woke up exactly at 9 AM and had a delicious breakfast with rice, kimchi, and seaweed soup. 🍚🥢 I was determined to make the most of the day! I worked out hard 💪 and studied diligently too. 🤓 Meeting up with Gray and Vicky for a drink was really nice. 🍻 Thanks to my friends, the day was even more enjoyable! I feel like I spent the day well. 😊 I'll try to make tomorrow a great day too! 🌟",
+        "diaryJa":"今日は気持ちよく一日を始められたよ！⛅️ 朝は9時にすっきりと起きて、ご飯とキムチ、それにわかめスープまで美味しく食べたよ。🍚🥢 今日一日頑張ろうって決めたんだ！運動も激しくして 💪 勉強もしっかりとやったよ。🤓 グレイとビッキーにも会って一杯飲んで楽しかったし。🍻 友達のおかげで一日がもっと楽しかったよ！今日は本当にいい一日を過ごせたみたい。😊 明日も良い一日にしよう！🌟",
+        "diaryCh":"今天一天以愉快的心情开始，充满活力地起床了！⛅️ 早上九点准时起床，吃了饭、泡菜和美味的海带汤。🍚🥢 我决定要努力过好今天！不仅认真锻炼了💪，还认真学习了。🤓 跟灰和比基见面喝了一杯酒，也很开心。🍻 多亏了朋友们，今天一天更加愉快！觉得今天真是过得很好。😊 明天也要努力过得愉快！🌟",
+        "diaryLa":"Hodie diem bonum sentiens excitavi! ⛅️ Mane hora nona exacta surrexi et comedi oryza cum kimchi et ius algarum ad libitum. 🍚🥢 Hodie diem fortiter agere decrevi! Exercitium strenue feci 💪 et studium diligenter perfeci. 🤓 Cum Grey et Vicky conveni et potum cepi, quod erat iucundum. 🍻 Amicorum gratia dies iucundior fuit! Mihi videtur hodie bene actum esse. 😊 Cras quoque bene agentem diem faciam! 🌟",
+        "diary_summary":"좋은 하루 보냈어!"
+      }
       
       if (detailData) {
         setSelectedDiary({
