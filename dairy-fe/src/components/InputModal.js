@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/InputModal.css"; // ✅ 모달 스타일 추가
 import { createDiaryEntry } from "../utils/api";
+import LoadingModal from "./LoadingModal";
 
 const InputModal = ({date, memoData, onClose }) => {
   // ✅ 상태값 추가
@@ -14,6 +15,7 @@ const InputModal = ({date, memoData, onClose }) => {
   const [meetPeople, setPeopleMet] = useState([]); // 만난 사람 리스트
   const [extSentence, setExtraNotes] = useState(""); // ✅ 추가 입력 (긴 글)
   const [isComposing, setIsComposing] = useState(false); // ✅ 한글 입력 상태
+  const [isLoading, setIsLoading] = useState(false); // API 요청 상태
 
   const moods = [
     { label: "😡 화남", value: "화남", color: "#FF6565" },
@@ -45,6 +47,7 @@ const InputModal = ({date, memoData, onClose }) => {
 
   // 저장버튼 눌른 경우
   const handleSave = async () => {
+    setIsLoading(true);
     const diaryData = {
       tone: memoData.tone,
       mood,
@@ -61,12 +64,14 @@ const InputModal = ({date, memoData, onClose }) => {
       onClose();
     } catch (error) {
       alert("일기 저장 중 오류가 발생했습니다.");
+    } finally {
+      setIsLoading(false);
     }
   };
   
-
   return (
     <div className="input-modal">
+      {isLoading && <LoadingModal />}
       <div className="modal-overlay">
         <div className="modal-content">
           <h3>dAIry와 함께 오늘을 기록해요 </h3>
