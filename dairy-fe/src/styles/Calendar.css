@@ -91,6 +91,14 @@
   bottom: 5px;
   right: 5px;
 }
+.diary-text {
+  font-size: 12px !important; /* ✅ 글자 크기 줄이기 */
+  color: rgba(64, 59, 59, 0.86) !important;
+  text-align: center;
+  margin-top: 8px; /* ✅ 상단 여백 조정 */
+  cursor: pointer;
+  font-weight: bold;
+}
 /* 오늘 날짜의 동그라미 (새로운 컴포넌트) */
 .today-circle {
   position: absolute;
@@ -103,4 +111,53 @@
   transform: translate(-50%, -50%);
   z-index: 1;
   opacity: 0.5; /* 살짝 투명하게 */
+}
+/* ✅ 무드 버튼 기본 스타일 */
+.mood-button {
+  border: none;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  width: 85px; /* 버튼 크기 일정하게 유지 */
+  height: 57px;
+  margin-top: 15px;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.8;
+}
+
+/* ✅ 무드 버튼 호버 효과 */
+.mood-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 무드별 색상 스타일 */
+.mood-화남 {
+  background-color: #FF6565;
+}
+.mood-불안 {
+  background-color: #FE9C5B;
+}
+.mood-기쁨 {
+  background-color: #EFEC44;
+  color: rgb(125, 119, 119); /* ✅ 밝은 배경일 경우 글자색 변경 */
+}
+.mood-평온 {
+  background-color: #9EDF84;
+}
+.mood-슬픔 {
+  background-color: #5AA5EB;
+}
+.mood-행복 {
+  background-color: #E15AB0;
+}
+.mood-피곤 {
+  background-color: #9370DB;
 }
