@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"; // 마이페이지 이동용
 
 const MemoPad = ({ onDataChange }) => {
   const [goal, setGoal] = useState("2/26-28 카부캠 해커톤 수상!"); // 할 일 / 목표
-  const [tone, setTone] = useState("평범"); // 어투 설정
+  const [tone, setTone] = useState("데일리"); // 어투 설정
   const navigate = useNavigate(); // 마이페이지 이동
 
   // ✅ 목표 변경 시 Calendar에 전달
@@ -36,10 +36,9 @@ const MemoPad = ({ onDataChange }) => {
       <div className="tone">
         <h4>📝 어투 설정</h4>
         <select value={tone} onChange={handleToneChange}>
-          <option value="평범">평범</option>
+          <option value="데일리">데일리</option>
           <option value="MZ 세대">MZ 세대</option>
           <option value="사극">사극</option>
-          <option value="직장인">직장인</option>
           <option value="공주">공주</option>
           <option value="사춘기 중학생">사춘기 중학생</option>
           <option value="제주도 사투리">제주도 사투리</option>

@@ -17,7 +17,7 @@
   background-color: #f8f5eb;
   padding: 50px;
   border-radius: 10px;
-  width: 550px;
+  width: 520px;
   text-align: left; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -25,7 +25,17 @@
 .read-modal-content h3 {
   text-align: right;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  position: relative;
+}
+.read-modal-content h3::after {
+  content: "";
+  position: absolute;
+  bottom: -5px; /* ✅ 글자와의 간격 조정 */
+  right: 0; /* ✅ 우측 정렬 */
+  width: 24%; /* ✅ 밑줄 길이 조정 (전체 글자 길이의 50%) */
+  height: 1.5px; /* ✅ 밑줄 두께 */
+  background-color: #b7a87a; /* ✅ 원하는 색상 */
 }
 /* 일기는 하얀 상자 안에*/
 .diary-box {
@@ -76,6 +86,7 @@
 }
 /* 한국어 일기와 번역본에 공통 적용 */
 .diary-content {
+  margin: 3%;
   font-size: 15px; 
   line-height: 1.3; /* ✅ 줄 간격 */
   color: #554b2e; /* ✅ 글씨 색상 */
@@ -102,6 +113,29 @@
   background-color: #ddd;
   color: black;
 }
+.action-buttons {
+  display: flex;
+  justify-content: space-between; /* 삭제 버튼은 왼쪽, 번역 선택 드롭다운은 오른쪽 */
+  align-items: center;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.icon-image {
+  width: 30px; /* 아이콘 크기 조절 */
+  height: 30px;
+}
+
+.delete-button {
+  margin-right: auto; /* 왼쪽 정렬 */
+}
 
 /* 언어 선택 드롭다운 */
 .language-selector {
@@ -122,4 +156,65 @@
   height: 2px; /* 두께 */
   background-color: #e9e1c8; /* ✅ 원하는 색상으로 변경 */
   margin: 20px 0; /* 위아래 여백 */
+}
+/* 삭제 확인 모달 배경 */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 삭제 확인 모달 본체 */
+.confirm-modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+.confirm-modal-content p {
+  color: #414141;
+  font-weight: 600;
+  margin-bottom: 3px; /* 문장 간 간격을 줄임 */
+  text-align: center; /* 중앙 정렬 */
+}
+/* 삭제 확인 모달 버튼 스타일 */
+.confirm-modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.confirm-modal-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.confirm-modal-buttons button:first-child {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.confirm-modal-buttons button:first-child:hover {
+  background-color: #d63031;
+}
+
+.confirm-modal-buttons button:last-child {
+  background-color: #dcdcdc;
+}
+
+.confirm-modal-buttons button:last-child:hover {
+  background-color: #b0b0b0;
 }
