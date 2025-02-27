@@ -83,15 +83,15 @@ const Calendar = () => {
 
   // 오늘 날짜 클릭 시 모달 열기 (하지만 일기가 있으면 비활성화)
   const handleTodayClick = (day) => {
-    const diaryEntry = diaryEntries.find((entry) => entry.date === day);
+    const diaryEntry = diaryEntries.find((entry) => entry.day === day);
     if (!diaryEntry && day === todayDate && year === todayYear && month === todayMonth) {
-      setSelectedDate(`${year}-${month + 1}-${day}`);
+      setSelectedDate(`${year}-${month}-${day}`);
       setIsWriteModalOpen(true);
     }
   };
   // 일기 버튼 클릭 시 해당 날짜의 상세 일기를 요청
   const handleReadDiary = async (day) => {
-    const diaryEntry = diaryEntries.find((entry) => entry.date === day);
+    const diaryEntry = diaryEntries.find((entry) => entry.day === day);
     if (!diaryEntry) return;
   
     try {
@@ -145,7 +145,7 @@ const Calendar = () => {
             const isToday = day === todayDate && year === todayYear && month === todayMonth;
             
             // 해당 날짜의 일기 데이터를 가져오기
-            const diaryEntry = diaryEntries.find((entry) => entry.date === day);
+            const diaryEntry = diaryEntries.find((entry) => entry.day === day);
 
             return (
               <div
