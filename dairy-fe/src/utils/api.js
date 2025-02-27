@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 백엔드 API 기본 URL 설정
-const API_BASE_URL = "https://13.124.98.245:8080"; 
+const API_BASE_URL = "http://13.124.98.245:8080"; 
 
 // 일기 데이터 전송 함수
 export const createDiaryEntry = async (diaryData, date) => {
