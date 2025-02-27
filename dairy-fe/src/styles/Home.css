@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Monomakh&display=swap');
+
 .title-container {
+  font-family: "Monomakh", serif;
   width: 100%;
   max-width: 1200px;
   margin: 40px auto 5px auto; 
@@ -19,6 +22,7 @@
   bottom: 10px;
 }
 .title {
+  font-family: "Monomakh", serif;
   font-size: 40px;
   position: relative;
   display: inline-block; /* ✅ 텍스트 길이에 맞게 조정 */
