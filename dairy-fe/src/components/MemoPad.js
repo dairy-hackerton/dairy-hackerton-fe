@@ -39,7 +39,6 @@ const MemoPad = ({ onDataChange }) => {
           <option value="데일리">데일리</option>
           <option value="MZ 세대">MZ 세대</option>
           <option value="사극">사극</option>
-          <option value="직장인">직장인</option>
           <option value="공주">공주</option>
           <option value="사춘기 중학생">사춘기 중학생</option>
           <option value="제주도 사투리">제주도 사투리</option>
