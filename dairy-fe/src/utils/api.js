@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 백엔드 API 기본 URL 설정
-const API_BASE_URL = "https://mydairy.my"; 
+const API_BASE_URL = "https://api.mydairy.my"; 
 
 // 일기 데이터 전송 함수
 export const createDiaryEntry = async (diaryData, date) => {
