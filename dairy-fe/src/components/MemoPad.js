@@ -3,7 +3,7 @@ import "../styles/MemoPad.css"; // 스타일 파일
 import { useNavigate } from "react-router-dom"; // 마이페이지 이동용
 
 const MemoPad = ({ onDataChange }) => {
-  const [goal, setGoal] = useState("2/26 카부캠 해커톤 수상!"); // 할 일 / 목표
+  const [goal, setGoal] = useState("2/26-28 카부캠 해커톤 수상!"); // 할 일 / 목표
   const [tone, setTone] = useState("반말"); // 어투 설정
   const navigate = useNavigate(); // 마이페이지 이동
 
