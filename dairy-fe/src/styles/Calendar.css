@@ -8,7 +8,7 @@
   align-items: flex-start;
   gap: 20px;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 10px auto;
   text-align: center;
   background-color: #f8f5eb;
   padding: 40px;
@@ -18,7 +18,6 @@
 /* 메모장 스타일 */
 .memo-section {
   margin-top: 75px;
-  
 }
 
 /* 달력 섹션 스타일 */
@@ -146,8 +145,8 @@
   background-color: #FE9C5B;
 }
 .mood-기쁨 {
-  background-color: #EFEC44;
-  color: rgb(125, 119, 119); /* ✅ 밝은 배경일 경우 글자색 변경 */
+  background-color: #f9f50d;
+  color: rgb(49, 54, 9); /* ✅ 밝은 배경일 경우 글자색 변경 */
 }
 .mood-평온 {
   background-color: #9EDF84;
