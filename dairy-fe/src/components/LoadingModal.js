@@ -18,8 +18,8 @@ const LoadingModal = () => {
       setTimeout(() => {
         setCurrentImage((prev) => (prev + 1) % images.length);
         setFade(true); // 페이드인 시작
-      }, 1000); // 500ms 후 이미지 변경
-    }, 8000);
+      }, 1000); // 
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
