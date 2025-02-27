@@ -122,6 +122,9 @@ const Calendar = () => {
     }
   };
   
+  const handleDeleteDiary = (diaryId) => {
+    // TODO: 삭제 기능 구현
+  };
 
   return (
     <div className="calendar-container">
@@ -187,6 +190,7 @@ const Calendar = () => {
         <ReadModal 
           diary={selectedDiary} 
           onClose={() => setIsReadModalOpen(false)}
+          onDelete={handleDeleteDiary}
         />
       )}
     </div>
