@@ -93,7 +93,7 @@ const ReadModal = ({ diary, onClose, onDelete }) => {
             <p>소중한 기록이 사라질 수도 있어요!</p>
             <div className="confirm-modal-buttons">
               {/* ✅ 삭제 버튼 클릭 시 onDelete 실행 후 모달 닫기 */}
-              <button onClick={() => { onDelete(diary.id); setShowConfirmModal(false); }}>삭제</button>
+              <button onClick={() => { onDelete(diary.date); setShowConfirmModal(false); }}>삭제</button>
               <button onClick={() => setShowConfirmModal(false)}>취소</button>
             </div>
           </div>

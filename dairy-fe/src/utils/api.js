@@ -35,3 +35,13 @@ export const getDiaryDetail = async (year, month, date) => {
     return null;
   }
 };
+// 특정 날짜의 일기 삭제
+export const deleteDiaryEntries = async (year, month, date) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/diary/${year}/${month}/${date}`);
+    return response.data;
+  } catch (error) {
+    console.error("[ERROR]일기 삭제에 실패하였습니다", error);
+    return null;
+  }
+};
