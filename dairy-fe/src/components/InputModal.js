@@ -20,7 +20,7 @@ const InputModal = ({date, memoData, onClose }) => {
     { label: "😰 불안", value: "불안", color: "#FE9C5B" },
     { label: "😆 기쁨", value: "기쁨", color: "#EFEC44" },
     { label: "😌 평온", value: "평온", color: "#9EDF84" },
-    { label: "🥱 슬픔", value: "슬픔", color: "#5AA5EB" },
+    { label: "😢 슬픔", value: "슬픔", color: "#5AA5EB" },
     { label: "🥰 행복", value: "행복", color: "#E15AB0" },
     { label: "😴 피곤", value: "피곤", color: "#9370DB" },
   ];  
@@ -66,117 +66,119 @@ const InputModal = ({date, memoData, onClose }) => {
   
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h3>dAIry와 함께 오늘을 기록해요 </h3>
-        {/* 1️⃣ 오늘 하루의 분위기 (동그라미 버튼) */}
-        <div className="input-group">
-          <label>오늘 하루의 분위기를 선택해주세요</label>
-          <div className="mood-selection">
-            {moods.map((m, index) => (
-              <button
-                key={index}
-                className={`mood-circle ${mood === m.value ? "selected" : ""}`}
-                style={{ backgroundColor: m.color }}
-                onClick={() => setMood(m.value)}
-              >
-                {m.label}
-              </button>
-            ))}
+    <div className="input-modal">
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <h3>dAIry와 함께 오늘을 기록해요 </h3>
+          {/* 1️⃣ 오늘 하루의 분위기 (동그라미 버튼) */}
+          <div className="input-group">
+            <label>오늘 하루의 분위기를 선택해주세요</label>
+            <div className="mood-selection">
+              {moods.map((m, index) => (
+                <button
+                  key={index}
+                  className={`mood-circle ${mood === m.value ? "selected" : ""}`}
+                  style={{ backgroundColor: m.color }}
+                  onClick={() => setMood(m.value)}
+                >
+                  {m.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* 2️⃣ 기상 시간 */}
-        <div className="input-group">
-          <label>오늘 몇시에 일어나셨나요?</label>
-          <input 
-            type="time" 
-            value={wakeTime} 
-            onChange={(e) => setWakeUpTime(e.target.value)} 
-          />
-        </div>
-
-        {/* 3️⃣ 가장 기억에 남는 식사 (태그 입력) */}
-        <div className="input-group">
-          <label>오늘 가장 기억에 남는 식사는 무엇인가요?</label>
-          <input 
-            type="text" 
-            placeholder="입력 후 엔터를 눌러 추가하세요" 
-            value={mealInput} 
-            onChange={(e) => setMealInput(e.target.value)}
-            onKeyDown={(e) => handleTagKeyDown(e, mealInput, setMealInput, food, setMeals)}
-            onCompositionStart={handleCompositionStart}
-            onCompositionEnd={handleCompositionEnd}
-          />
-          <div className="tags-container">
-            {food.map((meal, index) => (
-              <span key={index} className="tag">
-                {meal}
-                <button onClick={() => removeTag(meal, food, setMeals)}>✖</button>
-              </span>
-            ))}
+          {/* 2️⃣ 기상 시간 */}
+          <div className="input-group">
+            <label>오늘 몇시에 일어나셨나요?</label>
+            <input 
+              type="time" 
+              value={wakeTime} 
+              onChange={(e) => setWakeUpTime(e.target.value)} 
+            />
           </div>
-        </div>
 
-        {/* 4️⃣ 오늘 한 일 (태그 입력) */}
-        <div className="input-group">
-          <label>오늘 무엇을 하셨나요?</label>
-          <input 
-            type="text" 
-            placeholder="입력 후 엔터를 눌러 추가하세요" 
-            value={activityInput} 
-            onChange={(e) => setActivityInput(e.target.value)}
-            onKeyDown={(e) => handleTagKeyDown(e, activityInput, setActivityInput, userDo, setActivities)}
-            onCompositionStart={handleCompositionStart}
-            onCompositionEnd={handleCompositionEnd}
-          />
-          <div className="tags-container">
-            {userDo.map((activity, index) => (
-              <span key={index} className="tag">
-                {activity}
-                <button onClick={() => removeTag(activity, userDo, setActivities)}>✖</button>
-              </span>
-            ))}
+          {/* 3️⃣ 가장 기억에 남는 식사 (태그 입력) */}
+          <div className="input-group">
+            <label>오늘 가장 기억에 남는 식사는 무엇인가요?</label>
+            <input 
+              type="text" 
+              placeholder="입력 후 엔터를 눌러 추가하세요" 
+              value={mealInput} 
+              onChange={(e) => setMealInput(e.target.value)}
+              onKeyDown={(e) => handleTagKeyDown(e, mealInput, setMealInput, food, setMeals)}
+              onCompositionStart={handleCompositionStart}
+              onCompositionEnd={handleCompositionEnd}
+            />
+            <div className="tags-container">
+              {food.map((meal, index) => (
+                <span key={index} className="tag">
+                  {meal}
+                  <button onClick={() => removeTag(meal, food, setMeals)}>✖</button>
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* 5️⃣ 오늘 누구를 만나셨나요? (태그 입력) */}
-        <div className="input-group">
-          <label>오늘 누구를 만나셨나요?</label>
-          <input 
-            type="text" 
-            placeholder="입력 후 엔터를 눌러 추가하세요" 
-            value={peopleInput} 
-            onChange={(e) => setPeopleInput(e.target.value)}
-            onKeyDown={(e) => handleTagKeyDown(e, peopleInput, setPeopleInput, meetPeople, setPeopleMet)}
-            onCompositionStart={handleCompositionStart}
-            onCompositionEnd={handleCompositionEnd}
-          />
-          <div className="tags-container">
-            {meetPeople.map((person, index) => (
-              <span key={index} className="tag">
-                {person}
-                <button onClick={() => removeTag(person, meetPeople, setPeopleMet)}>✖</button>
-              </span>
-            ))}
+          {/* 4️⃣ 오늘 한 일 (태그 입력) */}
+          <div className="input-group">
+            <label>오늘 무엇을 하셨나요?</label>
+            <input 
+              type="text" 
+              placeholder="입력 후 엔터를 눌러 추가하세요" 
+              value={activityInput} 
+              onChange={(e) => setActivityInput(e.target.value)}
+              onKeyDown={(e) => handleTagKeyDown(e, activityInput, setActivityInput, userDo, setActivities)}
+              onCompositionStart={handleCompositionStart}
+              onCompositionEnd={handleCompositionEnd}
+            />
+            <div className="tags-container">
+              {userDo.map((activity, index) => (
+                <span key={index} className="tag">
+                  {activity}
+                  <button onClick={() => removeTag(activity, userDo, setActivities)}>✖</button>
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-        
-        {/* 6️⃣ 더 쓰고 싶은 내용 입력 (긴 텍스트) */}
-        <div className="input-group">
-          <label>더 쓸 내용이 있다면 작성해주세요</label>
-          <textarea 
-            className="large-textarea" // ✅ 새로운 클래스 적용
-            value={extSentence} 
-            onChange={(e) => setExtraNotes(e.target.value)}
-            placeholder="자유롭게 입력하세요..."
-          />
-        </div>
 
-        {/* 버튼 영역 */}
-        <div className="modal-buttons">
-          <button onClick={onClose}>닫기</button>
-          <button onClick={handleSave}>일기 생성하기</button>
+          {/* 5️⃣ 오늘 누구를 만나셨나요? (태그 입력) */}
+          <div className="input-group">
+            <label>오늘 누구를 만나셨나요?</label>
+            <input 
+              type="text" 
+              placeholder="입력 후 엔터를 눌러 추가하세요" 
+              value={peopleInput} 
+              onChange={(e) => setPeopleInput(e.target.value)}
+              onKeyDown={(e) => handleTagKeyDown(e, peopleInput, setPeopleInput, meetPeople, setPeopleMet)}
+              onCompositionStart={handleCompositionStart}
+              onCompositionEnd={handleCompositionEnd}
+            />
+            <div className="tags-container">
+              {meetPeople.map((person, index) => (
+                <span key={index} className="tag">
+                  {person}
+                  <button onClick={() => removeTag(person, meetPeople, setPeopleMet)}>✖</button>
+                </span>
+              ))}
+            </div>
+          </div>
+          
+          {/* 6️⃣ 더 쓰고 싶은 내용 입력 (긴 텍스트) */}
+          <div className="input-group">
+            <label>더 쓸 내용이 있다면 작성해주세요</label>
+            <textarea 
+              className="large-textarea" // ✅ 새로운 클래스 적용
+              value={extSentence} 
+              onChange={(e) => setExtraNotes(e.target.value)}
+              placeholder="자유롭게 입력하세요..."
+            />
+          </div>
+
+          {/* 버튼 영역 */}
+          <div className="modal-buttons">
+            <button onClick={onClose}>닫기</button>
+            <button onClick={handleSave}>일기 생성하기</button>
+          </div>
         </div>
       </div>
     </div>
