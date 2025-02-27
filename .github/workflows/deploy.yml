@@ -2,47 +2,41 @@ name: Deploy Frontend to S3+CloudFront
 
 on:
   push:
-    branches: [ "jacky" ]  # 해당 브랜치에 push될 때 자동 실행
+    branches: [ "jacky" ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dairy-fe
 
     steps:
-      # 1) GitHub 레포 소스 체크아웃
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 2) Node 환경 설정 (React 등)
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # 원하는 버전
+          node-version: '16'
 
-      # 3) 의존성 설치 & 빌드
       - name: Install dependencies
         run: npm install
 
       - name: Build
-        run: npm run build
-        # build 결과물은 보통 ./build 디렉터리에 생성됨 (React 기준)
+        run: CI=false npm run build
 
-      # 4) AWS 자격 증명 설정
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2   # 원하는 리전
+          aws-region: ap-northeast-2
 
-      # 5) S3로 동기화
       - name: Deploy to S3
         run: |
           aws s3 sync build/ s3://dairy-fe-bucket --delete
 
-      # 6) CloudFront 캐시 무효화 (선택)
       - name: Invalidate CloudFront
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id E1ZY3TJD8UIO5E \
-            --paths "/*"
+          aws cloudfront create-invalidation --distribution-id E1ZY3TJD8UIO5E --paths "/*"
