@@ -158,8 +158,8 @@ const Calendar = () => {
             return (
               <div
                 key={index}
-                className={`calendar-cell ${day ? "active" : ""} ${isToday ? "today" : ""}`}
-                onClick={!diaryEntry && isToday ? () => handleTodayClick(day) : null} // ✅ 일기 있으면 클릭 방지
+                className={`calendar-cell ${day ? "active" : ""}`}
+                onClick={day ? () => handleDateClick(day) : null} // ✅ 모든 날짜에서 클릭 가능
               >
                 {/* 오늘 날짜 표시 (단, 일기 없을 때만) */}
                 {isToday && !diaryEntry && <div className="today-circle"></div>}
@@ -176,7 +176,6 @@ const Calendar = () => {
                     {diaryEntry.summary}
                   </button>
                 ) : (
-                  
                   <p className="diary-text">+ 일기 작성하기</p>
                 )}
               </div>
